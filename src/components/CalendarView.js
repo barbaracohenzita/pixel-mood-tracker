@@ -22,8 +22,21 @@ const CalendarView = () => {
   };
 
   const renderHeatmap = () => {
-    // Render heatmap using moodData
-    // Use color gradients to represent different mood levels
+    const daysInMonth = new Date().getDate();
+    const heatmap = [];
+    for (let i = 1; i <= daysInMonth; i++) {
+      const date = new Date(new Date().getFullYear(), new Date().getMonth(), i).toISOString().split('T')[0];
+      const mood = moodData.find((mood) => mood.date === date);
+      const moodLevel = mood ? `mood-${mood.level}` : '';
+      heatmap.push(
+        <div
+          key={i}
+          className={`day ${moodLevel}`}
+          onClick={() => handleDateClick(date)}
+        ></div>
+      );
+    }
+    return heatmap;
   };
 
   const renderJournalEntry = () => {
