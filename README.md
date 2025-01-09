@@ -1,2 +1,1 @@
-# pixel-mood-tracker
-A pixel mood tracker app with journaling and analytics features
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
