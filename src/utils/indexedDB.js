@@ -27,11 +27,11 @@ const openDB = () => {
   });
 };
 
-export const saveMoodData = async (date, mood) => {
+export const saveMoodData = async (date, level, tag) => {
   const db = await openDB();
   const transaction = db.transaction([MOOD_STORE], 'readwrite');
   const store = transaction.objectStore(MOOD_STORE);
-  store.put({ date, mood });
+  store.put({ date, level, tag });
   return transaction.complete;
 };
 
@@ -80,7 +80,7 @@ export const searchMoods = async (query) => {
   return new Promise((resolve, reject) => {
     const request = store.getAll();
     request.onsuccess = (event) => {
-      const results = event.target.result.filter((mood) => mood.mood.includes(query));
+      const results = event.target.result.filter((mood) => mood.tag.includes(query));
       resolve(results);
     };
     request.onerror = (event) => {

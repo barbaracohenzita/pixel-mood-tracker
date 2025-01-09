@@ -26,7 +26,7 @@ const Search = () => {
         {results.length > 0 ? (
           results.map((result, index) => (
             <div key={index} className="search-result">
-              <p>{result.date}: {result.text || result.mood}</p>
+              <p>{result.date}: {result.text || result.tag}</p>
             </div>
           ))
         ) : (
